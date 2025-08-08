@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enum\User\RolesEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
@@ -32,6 +33,18 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        $user = Auth::user();
+
+        // Super Admin Role
+        if ($user->hasRole(RolesEnum::SuperAdmin)) {
+            return redirect()->intended(route('dashboard'));
+        }
+
+        // Church Admin Role
+        if ($user->hasRole(RolesEnum::ChurchAdmin)) {
+            return redirect()->intended(route('church.dashboard'));
+        }
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
