@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Super Admin',
             'email' => 'superadmin@test.com',
-	    	'password' => Hash::make('12345678'),
+            'password' => Hash::make('12345678'),
         ])->assignRole(RolesEnum::SuperAdmin);
 
         Church::factory(1)->create();

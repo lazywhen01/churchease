@@ -17,9 +17,10 @@ class EnsureUserRoleIsChurchAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || !Auth::user()->hasRole(RolesEnum::ChurchAdmin)) {
+        if (! Auth::check() || ! Auth::user()->hasRole(RolesEnum::ChurchAdmin)) {
             return abort(Response::HTTP_UNAUTHORIZED);
         }
+
         return $next($request);
     }
 }
