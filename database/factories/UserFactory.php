@@ -34,15 +34,15 @@ class UserFactory extends Factory
 
     public function superAdminRole(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
 
         ]);
     }
 
     public function churchAdminRole(): static
     {
-        return $this->state(fn(array $attributes) => [
-            
+        return $this->state(fn (array $attributes) => [
+
         ]);
     }
 

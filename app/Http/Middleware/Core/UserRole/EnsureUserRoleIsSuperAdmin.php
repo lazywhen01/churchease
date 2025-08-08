@@ -17,9 +17,10 @@ class EnsureUserRoleIsSuperAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || !Auth::user()->hasRole(RolesEnum::SuperAdmin)) {
+        if (! Auth::check() || ! Auth::user()->hasRole(RolesEnum::SuperAdmin)) {
             return abort(Response::HTTP_UNAUTHORIZED);
         }
+
         return $next($request);
     }
 }
